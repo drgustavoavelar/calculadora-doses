@@ -11,13 +11,13 @@
 - [x] Validar campos de entrada
 
 ## Fase 2: Funcionalidades Avançadas
-- [ ] Adicionar persistência de dados com LocalStorage
-- [ ] Implementar botão de limpar/resetar formulário
-- [ ] Adicionar opção de exportar resultados (PDF ou impressão)
-- [ ] Melhorar feedback visual (tooltips, animações)
+- [x] Adicionar persistência de dados com LocalStorage
+- [x] Implementar botão de limpar/resetar formulário
+- [x] Adicionar opção de exportar resultados (PDF ou impressão)
+- [x] Melhorar feedback visual (tooltips, animações)
 
 ## Fase 3: Testes e Entrega
-- [ ] Testar cálculos com diferentes cenários
-- [ ] Verificar responsividade em diferentes dispositivos
+- [x] Testar cálculos com diferentes cenários
+- [x] Verificar responsividade em diferentes dispositivos
 - [ ] Criar checkpoint final
 - [ ] Entregar aplicativo ao usuário
