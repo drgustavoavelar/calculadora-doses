@@ -19,5 +19,12 @@
 ## Fase 3: Testes e Entrega
 - [x] Testar cálculos com diferentes cenários
 - [x] Verificar responsividade em diferentes dispositivos
-- [ ] Criar checkpoint final
-- [ ] Entregar aplicativo ao usuário
+- [x] Criar checkpoint final
+- [x] Entregar aplicativo ao usuário
+
+## Fase 3: Funcionalidades Extras
+- [x] Implementar histórico de cálculos salvos
+- [x] Adicionar modo escuro com alternância de tema
+- [x] Criar calculadora reversa (volume → dose em mg)
+- [x] Melhorar interface do histórico
+- [x] Adicionar opção de nomear protocolos salvos
