@@ -4,12 +4,20 @@ steps:
     args:
       - 'build'
       - '-t'
+      - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$COMMIT_SHA'
+      - '-t'
       - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest'
       - '-f'
       - 'calculadora-insulina/Dockerfile'
       - './calculadora-insulina'
 
-  # Step 2: Push Docker image to Container Registry
+  # Step 2: Push Docker image with commit SHA tag
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$COMMIT_SHA'
+
+  # Step 3: Push Docker image with latest tag
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
@@ -20,5 +28,5 @@ substitutions:
   _GITHUB_REPO: 'calculadora-doses'
 
 images:
-
-    - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest'
+  - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest'
+  - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$COMMIT_SHA'
