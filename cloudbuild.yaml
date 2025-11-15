@@ -22,3 +22,4 @@ substitutions:
 images:
 
   - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$COMMIT_SHA'
+    - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest'
