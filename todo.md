@@ -28,3 +28,13 @@
 - [x] Criar calculadora reversa (volume → dose em mg)
 - [x] Melhorar interface do histórico
 - [x] Adicionar opção de nomear protocolos salvos
+
+## Ajustes Solicitados
+- [x] Alterar título de "Calculadora de Doses de Insulina" para "Calculadora de Doses"
+
+## Documentação
+- [x] Criar manual de instruções completo
+- [x] Integrar manual de instruções no aplicativo web
+
+## Correções
+- [x] Corrigir erro de ref no DialogTrigger com Button

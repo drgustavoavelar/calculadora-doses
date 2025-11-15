@@ -4,7 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { AlertCircle, Calculator, Plus, Trash2, Syringe, RotateCcw, Printer, Moon, Sun, History, ArrowLeftRight, Save } from "lucide-react";
+import { AlertCircle, Calculator, Plus, Trash2, Syringe, RotateCcw, Printer, Moon, Sun, History, ArrowLeftRight, Save, BookOpen } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -306,7 +306,7 @@ export default function Home() {
           <div className="flex items-center justify-center gap-3 mb-3">
             <Syringe className="w-10 h-10 text-primary print:hidden" />
             <h1 className="text-4xl font-bold text-foreground print:text-2xl">
-              Calculadora de Doses de Insulina
+              Calculadora de Doses
             </h1>
           </div>
           <p className="text-muted-foreground text-lg print:text-sm">
@@ -355,7 +355,7 @@ export default function Home() {
 
         {/* Tabs para diferentes funcionalidades */}
         <Tabs defaultValue="calculator" className="w-full">
-          <TabsList className="grid w-full grid-cols-3 mb-6 print:hidden">
+          <TabsList className="grid w-full grid-cols-4 mb-6 print:hidden">
             <TabsTrigger value="calculator">
               <Calculator className="w-4 h-4 mr-2" />
               Calculadora
@@ -367,6 +367,10 @@ export default function Home() {
             <TabsTrigger value="history">
               <History className="w-4 h-4 mr-2" />
               Histórico
+            </TabsTrigger>
+            <TabsTrigger value="manual">
+              <BookOpen className="w-4 h-4 mr-2" />
+              Manual
             </TabsTrigger>
           </TabsList>
 
@@ -724,11 +728,240 @@ export default function Home() {
               </CardContent>
             </Card>
           </TabsContent>
+
+          {/* Tab: Manual de Instruções */}
+          <TabsContent value="manual">
+            <Card className="shadow-md">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2">
+                  <BookOpen className="w-5 h-5" />
+                  Manual de Instruções
+                </CardTitle>
+                <CardDescription>
+                  Guia completo para usar todas as funcionalidades do aplicativo
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="prose prose-sm max-w-none dark:prose-invert">
+                <div className="space-y-6">
+                  {/* Introdução */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Introdução</h2>
+                    <p className="text-muted-foreground">
+                      A <strong>Calculadora de Doses</strong> é uma ferramenta desenvolvida para auxiliar profissionais 
+                      de saúde no cálculo preciso de doses de medicamentos a serem aspiradas em seringas de insulina. 
+                      O aplicativo automatiza cálculos complexos, reduzindo o risco de erros.
+                    </p>
+                  </section>
+
+                  {/* Aviso */}
+                  <Alert className="bg-yellow-50 dark:bg-yellow-950 border-yellow-300 dark:border-yellow-800">
+                    <AlertCircle className="h-4 w-4 text-yellow-600 dark:text-yellow-500" />
+                    <AlertDescription className="text-yellow-800 dark:text-yellow-200">
+                      <strong>⚠️ AVISO:</strong> Esta ferramenta é apenas um auxiliar de cálculo. NÃO substitui 
+                      orientação médica profissional. Sempre consulte um profissional de saúde antes de administrar medicamentos.
+                    </AlertDescription>
+                  </Alert>
+
+                  {/* Como Usar - Calculadora Principal */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Como Usar a Calculadora Principal</h2>
+                    
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">1. Configurar a Concentração</h3>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li>Insira a <strong>Quantidade Total (mg)</strong> do medicamento</li>
+                      <li>Insira o <strong>Volume Total (mL)</strong></li>
+                      <li>A concentração será calculada automaticamente em mg/mL</li>
+                    </ul>
+
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">2. Configurar o Protocolo de Doses</h3>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li>Configure o nome de cada período (ex: "Mês 1", "Semana 1")</li>
+                      <li>Insira a dose desejada em miligramas para cada período</li>
+                      <li>Use <strong>"+ Adicionar Período"</strong> para criar novas linhas</li>
+                      <li>Use o botão de lixeira para remover períodos</li>
+                    </ul>
+
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">3. Calcular e Interpretar</h3>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li>Clique em <strong>"Calcular Doses"</strong></li>
+                      <li>Os resultados mostrarão o volume em <strong>mL</strong> (3 casas decimais)</li>
+                      <li>E também em <strong>UI</strong> (Unidades de Insulina, arredondado)</li>
+                      <li>Padrão: 1 mL = 100 UI</li>
+                    </ul>
+
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">4. Salvar Protocolo</h3>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li>Após calcular, clique em <strong>"Salvar"</strong></li>
+                      <li>Dê um nome descritivo ao protocolo</li>
+                      <li>O protocolo ficará disponível na aba "Histórico"</li>
+                    </ul>
+                  </section>
+
+                  {/* Calculadora Reversa */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Calculadora Reversa</h2>
+                    <p className="text-muted-foreground mb-2">
+                      Use esta função para calcular a dose em mg a partir de um volume já aspirado:
+                    </p>
+                    <ol className="list-decimal pl-6 space-y-1 text-muted-foreground">
+                      <li>Vá para a aba <strong>"Reversa"</strong></li>
+                      <li>Certifique-se de que a concentração está configurada</li>
+                      <li>Insira o volume aspirado em mL</li>
+                      <li>Clique em <strong>"Calcular Dose"</strong></li>
+                      <li>O resultado mostrará a dose em mg</li>
+                    </ol>
+                  </section>
+
+                  {/* Histórico */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Gerenciar Histórico</h2>
+                    <p className="text-muted-foreground mb-2">
+                      Na aba <strong>"Histórico"</strong> você pode:
+                    </p>
+                    <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                      <li><strong>Visualizar</strong> todos os protocolos salvos</li>
+                      <li><strong>Carregar</strong> um protocolo clicando em "Carregar Protocolo"</li>
+                      <li><strong>Deletar</strong> protocolos usando o ícone de lixeira</li>
+                    </ul>
+                  </section>
+
+                  {/* Recursos Adicionais */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Recursos Adicionais</h2>
+                    
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">Salvamento Automático</h3>
+                    <p className="text-muted-foreground">
+                      Seus dados são salvos automaticamente enquanto você digita. Ao reabrir o aplicativo, 
+                      os últimos dados inseridos serão carregados.
+                    </p>
+
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">Limpar Dados</h3>
+                    <p className="text-muted-foreground">
+                      Use o botão <strong>"Limpar Tudo"</strong> para resetar todos os campos para os valores padrão. 
+                      O histórico de protocolos salvos não será afetado.
+                    </p>
+
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">Imprimir Resultados</h3>
+                    <p className="text-muted-foreground">
+                      Clique em <strong>"Imprimir"</strong> para gerar uma versão otimizada para impressão. 
+                      Você pode imprimir em papel ou salvar como PDF.
+                    </p>
+
+                    <h3 className="text-lg font-semibold text-foreground mt-4 mb-2">Modo Escuro</h3>
+                    <p className="text-muted-foreground">
+                      Alterne entre modo claro e escuro usando o botão no topo da página. 
+                      Ideal para uso em ambientes com pouca luz.
+                    </p>
+                  </section>
+
+                  {/* Fórmulas */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Fórmulas Utilizadas</h2>
+                    <div className="bg-muted/50 p-4 rounded-lg space-y-2">
+                      <p className="font-mono text-sm">
+                        <strong>Concentração:</strong> mg/mL = Quantidade Total (mg) ÷ Volume Total (mL)
+                      </p>
+                      <p className="font-mono text-sm">
+                        <strong>Volume (mL):</strong> mL = Dose (mg) ÷ Concentração (mg/mL)
+                      </p>
+                      <p className="font-mono text-sm">
+                        <strong>Volume (UI):</strong> UI = Volume (mL) × 100
+                      </p>
+                      <p className="font-mono text-sm">
+                        <strong>Dose Reversa:</strong> mg = Volume (mL) × Concentração (mg/mL)
+                      </p>
+                    </div>
+                  </section>
+
+                  {/* Exemplo Prático */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Exemplo Prático</h2>
+                    <div className="bg-primary/10 p-4 rounded-lg border border-primary/20">
+                      <p className="font-semibold text-foreground mb-2">Cenário:</p>
+                      <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                        <li>Medicamento: 90 mg em 3,5 mL</li>
+                        <li>Dose desejada: 2,5 mg</li>
+                      </ul>
+                      <p className="font-semibold text-foreground mt-3 mb-2">Cálculo:</p>
+                      <ul className="list-disc pl-6 space-y-1 text-muted-foreground">
+                        <li>Concentração: 90 ÷ 3,5 = 25,71 mg/mL</li>
+                        <li>Volume: 2,5 ÷ 25,71 = 0,097 mL</li>
+                        <li>Em UI: 0,097 × 100 = 9,7 ≈ <strong>10 UI</strong></li>
+                      </ul>
+                      <p className="font-semibold text-primary mt-3">
+                        Resultado: Aspirar 0,097 mL ou aproximadamente 10 UI
+                      </p>
+                    </div>
+                  </section>
+
+                  {/* Perguntas Frequentes */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Perguntas Frequentes</h2>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <h4 className="font-semibold text-foreground">Por que 1 mL = 100 UI?</h4>
+                        <p className="text-muted-foreground text-sm">
+                          Este é o padrão para seringas de insulina U-100, as mais comumente utilizadas.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold text-foreground">Meus dados estão seguros?</h4>
+                        <p className="text-muted-foreground text-sm">
+                          Sim. Todos os dados são armazenados localmente no seu navegador. Nenhuma informação 
+                          é enviada para servidores externos.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold text-foreground">Funciona offline?</h4>
+                        <p className="text-muted-foreground text-sm">
+                          O aplicativo requer internet para carregar, mas os dados salvos ficam disponíveis 
+                          localmente após o carregamento inicial.
+                        </p>
+                      </div>
+
+                      <div>
+                        <h4 className="font-semibold text-foreground">Funciona em celular?</h4>
+                        <p className="text-muted-foreground text-sm">
+                          Sim! O aplicativo é totalmente responsivo e funciona em smartphones, tablets e computadores.
+                        </p>
+                      </div>
+                    </div>
+                  </section>
+
+                  {/* Glossário */}
+                  <section>
+                    <h2 className="text-xl font-bold text-foreground mb-3">Glossário</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      <div>
+                        <strong className="text-foreground">mg:</strong>
+                        <span className="text-muted-foreground text-sm ml-2">Miligrama (0,001 gramas)</span>
+                      </div>
+                      <div>
+                        <strong className="text-foreground">mL:</strong>
+                        <span className="text-muted-foreground text-sm ml-2">Mililitro (0,001 litros)</span>
+                      </div>
+                      <div>
+                        <strong className="text-foreground">UI:</strong>
+                        <span className="text-muted-foreground text-sm ml-2">Unidades de Insulina</span>
+                      </div>
+                      <div>
+                        <strong className="text-foreground">Concentração:</strong>
+                        <span className="text-muted-foreground text-sm ml-2">Quantidade por volume (mg/mL)</span>
+                      </div>
+                    </div>
+                  </section>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
 
         {/* Footer */}
         <div className="mt-12 text-center text-sm text-muted-foreground print:mt-4 print:text-xs">
-          <p>© 2025 Calculadora de Doses de Insulina. Desenvolvido para auxiliar profissionais de saúde.</p>
+          <p>© 2025 Calculadora de Doses. Desenvolvido para auxiliar profissionais de saúde.</p>
         </div>
       </div>
     </div>
