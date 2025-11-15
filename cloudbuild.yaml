@@ -20,16 +20,5 @@ substitutions:
   _GITHUB_REPO: 'calculadora-doses'
 
 images:
-  - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest'
 
-  # Step 3: Deploy to Cloud Run
-- name: 'gcr.io/cloud-builders/gke-deploy'
-  args:
-  - run
-  - '--filename=calculadora-insulina'
-  - '--image=gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$COMMIT_SHA'
-  - '--location=europe-west1'
-  - '--namespace=default'
-  env:
-  - 'CLOUDSDK_COMPUTE_REGION=europe-west1'
-  - 'CLOUDSDK_RUN_PLATFORM=managed'
+  - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$COMMIT_SHA'
