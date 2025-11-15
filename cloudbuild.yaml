@@ -1,0 +1,35 @@
+steps:
+  # Step 1: Build Docker image
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$SHORT_SHA'
+      - '-t'
+      - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest'
+      - '-f'
+      - 'calculadora-insulina/Dockerfile'
+      - './calculadora-insulina'
+
+  # Step 2: Push Docker image to Container Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO'
+
+  # Step 3: Deploy to Cloud Run
+  - name: 'gcr.io/cloud-builders/gke-deploy'
+    args:
+      - run
+      - --filename=.
+      - --image=gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest
+      - --location=europe-west1
+      - --cluster=projects/$PROJECT_ID/locations/europe-west1/clusters/calculadora-doses
+
+substitutions:
+  _GITHUB_OWNER: drgustavoavelar
+  _GITHUB_REPO: calculadora-doses
+
+images:
+  - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/github.com/$_GITHUB_OWNER/$_GITHUB_REPO:latest'
