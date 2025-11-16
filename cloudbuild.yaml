@@ -1,5 +1,5 @@
 steps:
-  # Step 1: Build Docker image with SHA and latest tags
+  # Step 1: Build Docker image with SHA and latest tags - using cloudbuild yaml
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
