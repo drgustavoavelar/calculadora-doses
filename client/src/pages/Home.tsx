@@ -304,7 +304,11 @@ export default function Home() {
         {/* Header com título */}
         <div className="text-center mb-8 print:mb-4">
           <div className="flex items-center justify-center gap-3 mb-3">
-            <Syringe className="w-10 h-10 text-primary print:hidden" />
+            <img 
+              src="/logo-clinica.png" 
+              alt="Logo da Clínica" 
+              className="w-16 h-16 object-contain print:w-12 print:h-12"
+            />
             <h1 className="text-4xl font-bold text-foreground print:text-2xl">
               Calculadora de Doses
             </h1>
@@ -961,7 +965,8 @@ export default function Home() {
 
         {/* Footer */}
         <div className="mt-12 text-center text-sm text-muted-foreground print:mt-4 print:text-xs">
-          <p>© 2025 Calculadora de Doses. Desenvolvido para auxiliar profissionais de saúde.</p>
+          <p>© 2025 Calculadora de Doses</p>
+          <p className="mt-1">Desenvolvido por <strong className="text-foreground">Dr. Gustavo Avelar</strong></p>
         </div>
       </div>
     </div>

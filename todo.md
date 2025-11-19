@@ -38,3 +38,7 @@
 
 ## Correções
 - [x] Corrigir erro de ref no DialogTrigger com Button
+
+## Personalização
+- [x] Adicionar logomarca da clínica no cabeçalho
+- [x] Atualizar créditos no rodapé para "Desenvolvido por Dr. Gustavo Avelar"
